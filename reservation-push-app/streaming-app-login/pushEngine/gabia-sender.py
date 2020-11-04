@@ -12,7 +12,7 @@ headers = {
 'Authorization':'Basic fdc1cb65bdcb6b2629bb8104593697dc'
 }
 #response = requests.request('POST', url, headers=headers, data=payload, allow_redirects=False)
-response = requests.request('POST', url, headers=headers, data=data)
+response = requests.request('POST', url, headers=headers, data=payload)
 print(response)
 print(response.status_code)
 print(response.text)

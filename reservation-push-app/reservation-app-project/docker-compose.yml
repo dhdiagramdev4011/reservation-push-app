@@ -1,0 +1,40 @@
+version: '3'
+
+volumes:
+  django_sample_db_dev: {}
+
+services:
+  # db:
+  #   image: postgres
+  #   volumes:
+  #     - django_sample_db_dev:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=sampledb
+  #     - POSTGRES_USER=sampleuser
+  #     - POSTGRES_PASSWORD=samplesecret
+  #     - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+
+  django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-DEV
+    environment:
+      - DJANGO_DEBUG=True
+    ports:
+      - "8000:8000"
+    command:
+      - bash
+      - -c
+      - |
+        pip3 install gunicorn
+        systemctl enable appdev
+        systemctl start appdev
+        yum repolist ; yum clean all
+        yum install -y nginx
+        systemctl enable nginx
+        systemctl start nginx
+       
+    restart: always
+    privileged: true
+    volumes:
+      - ./:/app/

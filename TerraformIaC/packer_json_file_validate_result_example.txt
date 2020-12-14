@@ -1,0 +1,7 @@
+Template validation failed. Errors are shown below.
+
+Errors validating build 'vsphere-iso'. 3 error(s) occurred:
+
+* 'vcenter_server' is required
+* 'username' is required
+* 'password' is required

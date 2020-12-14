@@ -1,0 +1,42 @@
+{
+    "builders": [{
+        "type": "vsphere-iso",
+        "vcenter_server": "",
+        "username": "",
+        "password": "",
+        "insecure_connection": "true",
+        "vm_name": "dhkim-app-test-vm",
+        "datastore": "vsanDatastore",
+        "host": "",
+        "convert_to_template": "true",
+        "cluster": "Cluster",
+        "network": "DPortGroup 1",
+        "boot_order": "cdrom",
+        "guest_os_type": "centos7_64Guest",
+        "ssh_username": "root",
+        "ssh_password": "rplinux",
+        "CPUs": 1,
+        "RAM": 4096,
+        "RAM_reserve_all": true,
+        "disk_controller_type": "pvscsi",
+        "disk_size": "20737",
+        "disk_thin_provisioned": true,
+        "network_card": "vmxnet3",
+        "iso_url": "[vsanDatastore] ISO/CentOS-7-x86_64-DVD-2003.iso"
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "inline": [
+            "sudo yum install -y wget",
+            "sudo yum install -y git",
+            "sudo yum install -y python3",
+            "sudo yum install -y python3-pip",
+            "sudo mkdir -p /var/www/html",
+            "sudo pip3 install django==2.1.5",
+            "sudo pip3 install autopep8",
+            "sudo pip3 install pylint",
+            "sudo mkdir /app ; cd /app ; sudo git clone -b develop https://github.com/dhdiagram4011/reservation-app-project.git",
+            "sudo chown -R root:root /app/*"
+        ]
+    }]
+}

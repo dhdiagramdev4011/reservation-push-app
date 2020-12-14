@@ -1,0 +1,4 @@
+# OS별 Packer 이미지 생성 소스코드
+https://github.com/hashicorp/packer/tree/master/builder/vsphere/examples/alpine
+
+

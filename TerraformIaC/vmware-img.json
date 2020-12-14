@@ -1,0 +1,59 @@
+{
+    "variables": {
+        "vsphere-server": "",
+        "vsphere-user": "",
+        "vsphere-password": "",
+
+        "vsphere-datacenter": "Datacenter",
+        "vsphere-cluster": "Cluster",
+        "vsphere-network": "Management Port Group",
+        "vsphere-datastore": "vsanDatastore",
+
+        "vm-name": "0804-packer-test",
+        "vm-cpu-num": "1",
+        "vm-mem-size": "4096",
+        "vm-disk-size": "25600",
+
+        "iso_url": "[vsanDatastore] ISO/rhel-server-7.7-x86_64-dvd.iso"
+    },
+
+    "builders": [{
+        "type": "vsphere-iso",
+
+        "vcenter_server": "",
+        "username": "",
+        "password": "",
+        "insecure_connection": "true",
+
+        "datacenter": "Datacenter",
+        "cluster": "Cluster",
+        "network": "Management Port Group",
+        "datastore": "vsanDatastore",
+
+        "vm_name": "0804-packer-vm-test",
+        "notes": "vmware packer image test",
+        "guest_os_type": "centos7_64Guest",
+
+        "boot_wait": "10s",
+        "boot_order": "cdrom",
+
+        "ssh_username": "centos",
+        "ssh_password": "rplinux",
+
+        "CPUs": "1",
+        "RAM": "4096",
+        "RAM_reserve_all": false,
+        "disk_controller_type": "pvscsi",
+        "disk_size": "10",
+        "disk_thin_provisioned": true,
+        "network_card": "vmxnet3",
+
+        "convert_to_template": true,
+
+        "iso_paths": ["[vsanDatastore] ISO/rhel-server-7.7-x86_64-dvd.iso"],
+        "boot_command": [
+            "<esc><wait>",
+            "linux ks=hd:fd0:/ks.cfg<enter>"
+        ]
+    }]
+}

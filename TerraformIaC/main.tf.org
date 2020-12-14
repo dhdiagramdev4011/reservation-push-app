@@ -1,0 +1,13 @@
+resource "docker_image" "ticket-app-develop" {
+  name = "ticket-app-develop:latest"
+  keep_locally = false
+}
+
+resource "docker_container" "ticket-app-develop" {
+  image = docker_image.ticket-app-develop.latest
+  name = "tutorial"
+  ports {
+    internal = 95
+    external = 9555
+  }
+}

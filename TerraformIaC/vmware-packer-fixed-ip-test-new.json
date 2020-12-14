@@ -1,0 +1,52 @@
+{
+    "builders": [{
+        "CPUs": 1,
+        "RAM": 4096,
+        "RAM_reserve_all": true,
+        "boot_command": "<esc> linux inst.text inst.ks=hd:fd0:/ks.cfg <enter><wait>",
+        "boot_order": "cdrom",
+        "boot_wait": "10s",
+        "cluster": "Cluster",
+        "convert_to_template": "true",
+        "datastore": "vsanDatastore",
+        "disk_controller_type": "pvscsi",
+        "guest_os_type": "centos7_64Guest",
+        "host": "",
+        "insecure_connection": "true",
+        "iso_paths": "[vsanDatastore] ISO/CentOS-7-x86_64-DVD-2003.iso",
+        "network_adapters": [{
+            "network": "DPortGroup 1",
+            "network_card": "vmxnet3"
+        }],
+        "password": "VMware1!",
+        "ssh_password": "rplinux",
+        "ssh_username": "root",
+        "storage": [{
+            "disk_size": "20737",
+            "disk_thin_provisioned": true
+        }],
+        "type": "vsphere-iso",
+        "username": "",
+        "vcenter_server": "",
+        "vm_name": "0804-app-deploy-test",
+        "vmx_data": {
+            "ethernet0.virtualDev": "vmxnet3",
+            "RemoteDisplay.vnc.enabled": "TRUE",
+            "RemoteDisplay.vnc.port": "5900",
+            "config.version": 8,
+            "cpuid.coresPerSocket": "1",
+            "ethernet0.addressType": "generated",
+            "ethernet0.networkName": "VM Network",
+            "ethernet0.pciSlotNumber": "9",
+            "ethernet0.present": "TRUE",
+            "ethernet1.addressType": "generated",
+            "ethernet1.networkName": "VLAN100",
+            "ethernet1.pciSlotNumber": "224",
+            "ethernet1.present": "TRUE",
+            "ethernet1.virtualDev": "vmxnet3",
+            "memsize": "2048",
+            "numvcpus": "2",
+            "virtualHW.version": 8
+        }
+    }]
+}

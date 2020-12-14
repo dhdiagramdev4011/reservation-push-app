@@ -1,0 +1,4 @@
+{
+  "_comment": "This is a comment", #앞에 언더스코어로 주석처리
+  "builders": [{}]
+}

@@ -1,0 +1,53 @@
+{
+    "builders": [{
+        "CPUs": "1",
+        "RAM": "4096",
+        "RAM_reserve_all": false,
+        "boot_command": [
+            "<esc><wait>",
+            "linux ks=hd:fd0:/ks.cfg<enter>"
+        ],
+        "boot_order": "cdrom",
+        "boot_wait": "10s",
+        "cluster": "Cluster",
+        "convert_to_template": true,
+        "datacenter": "Datacenter",
+        "datastore": "vsanDatastore",
+        "disk_controller_type": "pvscsi",
+        "guest_os_type": "centos7_64Guest",
+        "insecure_connection": "true",
+        "iso_paths": [
+            "[vsanDatastore] ISO/CentOS-7-x86_64-DVD-2003.iso"
+        ],
+        "network_adapters": [{
+            "network": "Management Port Group",
+            "network_card": "vmxnet3"
+        }],
+        "notes": "vmware packer image test",
+        "password": "",
+        "ssh_password": "",
+        "ssh_username": "centos",
+        "storage": [{
+            "disk_size": "10",
+            "disk_thin_provisioned": true
+        }],
+        "type": "vsphere-iso",
+        "username": "",
+        "vcenter_server": "",
+        "vm_name": "0804-packer-vm-test"
+    }],
+    "variables": {
+        "iso_url": "[vsanDatastore] ISO/CentOS-7-x86_64-DVD-2003.iso",
+        "vm-cpu-num": "1",
+        "vm-disk-size": "25600",
+        "vm-mem-size": "4096",
+        "vm-name": "0804-packer-test",
+        "vsphere-cluster": "Cluster",
+        "vsphere-datacenter": "Datacenter",
+        "vsphere-datastore": "vsanDatastore",
+        "vsphere-network": "Management Port Group",
+        "vsphere-password": "",
+        "vsphere-server": "",
+        "vsphere-user": ""
+    }
+}
